@@ -1,0 +1,117 @@
+.container-Cards{
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.selectorRow{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.selectorTeam{
+    background-color: #0f1823;
+    color: #fff;
+    width: 50%;
+    border-radius: 8px;
+    font-size: 20px;
+    
+}
+
+.card{
+    position: relative;
+    width: 600px;
+    height: 350px;
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 20px;
+    background:#0f1823 ;
+}
+
+.card .backgroundAgent{
+    opacity: 0%;
+}
+
+.card:hover .backgroundAgent{
+    opacity: 100%;
+}
+
+.card .imageAgent{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    height: 250px;
+    transition: 0.5s;
+
+}
+
+.card:hover .imageAgent {
+    left:80%;
+    height: 350px;
+}
+
+.card .backgroundAgent{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    height: 250px;
+    transition: 0.5s;
+
+}
+
+.card:hover .backgroundAgent {
+    left:80%;
+    height: 350px;
+}
+
+.card .container{
+    position: relative;
+    width: 50%;
+    left: 5%;
+    padding: 20px 20px 20px 40px;
+    opacity: 0%;
+    visibility: hidden;
+    transition: 0.5s;
+}
+.card:hover .container{
+    opacity: 100%;
+    visibility: visible;
+    left: 0%;
+    
+}
+.card .container h1 {
+    color:#fff;
+    text-transform: uppercase;
+    font-size: 2.5em;
+    line-height: 1em;
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+}
+
+.card .container p{
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+}
+
+.card .container {
+    color:#fff;
+    margin: 0;
+}
+
+.agentAbilities{
+    display: flex;
+    gap: 10px;
+
+}
+.abilitie{
+    height: 40px;
+    width: 40px;
+}
+
+.cuadrado {
+    width: 100px; 
+    height: 100px; 
+    background: #428bca;
+}

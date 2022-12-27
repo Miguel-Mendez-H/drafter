@@ -1,14 +1,14 @@
 import * as React from 'react'
 import './App.css';
 import Header from './Header';
-import Content from './Content';
 import Footer from './Footer';
+import DisplayAgents from './components/agents/index';
 
 function App() {
   return (
     <div>
       <Header/>
-      <Content/>
+        <DisplayAgents/>
       <Footer/>
     </div>
   );
