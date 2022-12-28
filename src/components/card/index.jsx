@@ -1,27 +1,61 @@
 import React from "react";
+import {useState } from "react";
+
 import "./styles.css" 
-import  Teams from "../../globals/globals"
+
+import {TeamSelector, handleTeamSelector} from "../selector";
+
 
 export const CardDefault = (props) => {
-  console.log("displayig a Card");
-  let data = props.props;
-  let TeamToSelect = Teams
+  // getting data
+  let agents = props.props
+
+  //Selector option
+  
+  //Handles Events
+
+  let [selectedAgent, setTeamAgent] = useState({});
+
+  let [teamsToDisplay, setTeamsToDisplay] = useState({})
+
+  function handleAgentCardClick(event){
+      let ide = parseInt(event.currentTarget.id) // When use currentTarget, it get the element where it attachment
+      let result = agents.find(agent => agent.id === ide)
+      result.team = selectedTeam
+      setTeamAgent(result)
+
+      let filterTeams = {}
+      filterTeams.Team_A = agents.filter(agent => agent.team ==='Team A')
+      filterTeams.Team_B = agents.filter(agent => agent.team ==='Team B')
+      setTeamsToDisplay(filterTeams)
+  }
+
+  let [selectedTeam, setTeam] = useState("");
+
+  function handleTeamSelector (event) {
+    let team = event.target.value
+    setTeam(team)
+  }
+
   return (
-    <div className="container">
-      <div className="selectorRow">
-      <select className="selectorTeam" id="teamSelector">
-        <option value="0">Select a team</option>
-        <option value="1">{TeamToSelect.TEAM_A}</option>
-        <option value="2">{TeamToSelect.TEAM_B}</option>
-      </select>
+    <>
+      <div className="selectorTeam-Row">
+        <select className="selectorTeam" id="teamSelector" value={selectedTeam} onChange={handleTeamSelector}>
+          <option value="0">Select a team</option>
+          <option value="Team A">Team A</option>
+          <option value="Team B">Team B</option>
+        </select>
       </div>
+
+    <TeamSelector props = {teamsToDisplay}></TeamSelector>
+    
+    <div className="container">
     <div className="container-Cards">
       {
-        data.map((agentToDisplay) =>(
-        <div key={agentToDisplay.displayName} className="card" style={{cursor:'pointer'}}>
-          <img className="backgroundAgent" src={agentToDisplay.background} alt="backgroundAgent" />
+        agents.map((agentToDisplay) =>(
+        <div id={agentToDisplay.id} key={agentToDisplay.displayName} className="card" style={{cursor:'pointer'}} onClick={handleAgentCardClick}>
+          <img className="backgroundAgent" src={agentToDisplay.background} alt="backgroundAgent"/>
           <img className="imageAgent" src={agentToDisplay.fullPortrait} alt="valorantAgent" />
-          
           <div className="container">
             <p>/Name</p>
             <h1>{agentToDisplay.displayName}</h1>
@@ -37,11 +71,12 @@ export const CardDefault = (props) => {
               <img className="abilitie" src={agentToDisplay.abilitie4Icon} alt={agentToDisplay.abilitie4} />
             </div>
             <br />
-            <p>/Selected by team: {agentToDisplay.team}</p>
+            <p>/Selected by : {agentToDisplay.team}</p>
           </div>
         </div>
         ))}
     </div>
     </div>
+    </>
   );
 };

@@ -2,22 +2,8 @@
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
-}
-
-.selectorRow{
-    margin: 10px;
-    display: flex;
     justify-content: center;
-}
-
-
-.selectorTeam{
-    background-color: #0f1823;
-    color: #fff;
-    width: 50%;
-    border-radius: 8px;
-    font-size: 20px;
-    
+    align-items: center;
 }
 
 .card{
@@ -110,8 +96,19 @@
     width: 40px;
 }
 
-.cuadrado {
-    width: 100px; 
-    height: 100px; 
-    background: #428bca;
+.selectorTeam {
+    background-color: #0f1823;
+    color: #fff;
+    width: 50%;
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+.selectorTeam-Row{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    gap: 10px;
 }

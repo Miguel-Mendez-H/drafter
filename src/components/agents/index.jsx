@@ -6,10 +6,9 @@ import getAgents from "../../services/connection"
 import { CardDefault } from "../card"
 import agentDefault from "./hooks"
 
-const DisplayAgents = () => {
-    console.log(agentDefault)
+const DisplayCardsAgents = () => {
+
     let [agents, setAgents] = useState(agentDefault)
-    console.log(agents)
 
     useEffect(() => {
     async function fetchingAgents() {
@@ -19,7 +18,6 @@ const DisplayAgents = () => {
     fetchingAgents()
 },[setAgents])  //missin Dependency: When u use a Var or Funct that are outside of useeffect
 
-
     return (
         <main>
             <div className="containerAgents">
@@ -28,4 +26,4 @@ const DisplayAgents = () => {
         </main>
     )
  }
-export default DisplayAgents
+export default DisplayCardsAgents

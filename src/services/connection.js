@@ -5,9 +5,10 @@ const getAgents = async () => {
         const data = await callApi.json()
         let data1 = data.data
         let agentData = data1.filter(agent => agent.isPlayableCharacter === true) // delete repeted sova in api
-            .map(function (agent) {
+            .map(function (agent, index) {
             let infoAgent = {}
-
+            
+            infoAgent.id = index
             infoAgent.displayName = agent.displayName
             infoAgent.fullPortrait = agent.fullPortrait
             infoAgent.background = agent.background
@@ -25,10 +26,10 @@ const getAgents = async () => {
             infoAgent.abilitie2Icon = agent.abilities[1].displayIcon
             infoAgent.abilitie3Icon = agent.abilities[2].displayIcon
             infoAgent.abilitie4Icon = agent.abilities[3].displayIcon
+            infoAgent.team = ""
             
             return infoAgent
         })
-        console.log(agentData)
         return agentData
         
     } catch (error) {
