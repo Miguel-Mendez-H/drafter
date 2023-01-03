@@ -5,13 +5,17 @@ import "./styles.css"
 
 import {TeamSelector, handleTeamSelector} from "../selector";
 
+let countA = 0
+let countB = 0
 
 export const CardDefault = (props) => {
+
+  let full_team = 5   // move to globals
+  
+
   // getting data
   let agents = props.props
 
-  //Selector option
-  
   //Handles Events
 
   let [selectedAgent, setTeamAgent] = useState({});
@@ -19,15 +23,29 @@ export const CardDefault = (props) => {
   let [teamsToDisplay, setTeamsToDisplay] = useState({})
 
   function handleAgentCardClick(event){
-      let ide = parseInt(event.currentTarget.id) // When use currentTarget, it get the element where it attachment
-      let result = agents.find(agent => agent.id === ide)
-      result.team = selectedTeam
-      setTeamAgent(result)
+      let idAgentClicked = parseInt(event.currentTarget.id) // When use currentTarget, it get the element where it attachment
+      let result = agents.find(agent => agent.id === idAgentClicked)
+      
+      // In valorant, the team can be use the same agents and max 5...
+      if (selectedTeam === 'Team A' && countA < full_team) {
+        result.teamA = true
+      } else if (selectedTeam === 'Team B' && countB < full_team){
+        result.teamB = true
+      }
 
-      let filterTeams = {}
-      filterTeams.Team_A = agents.filter(agent => agent.team ==='Team A')
-      filterTeams.Team_B = agents.filter(agent => agent.team ==='Team B')
-      setTeamsToDisplay(filterTeams)
+      // Use fulter team to agroup agents with the true condition on .TeamA or .TeamB
+        let filterTeams = {}
+        filterTeams.Team_A = agents.filter(agent => agent.teamA === true)
+        filterTeams.Team_B = agents.filter(agent => agent.teamB === true)
+
+        if (selectedTeam === 'Team A') {
+            setTeamsToDisplay(filterTeams)
+            countA++
+          }
+        if (selectedTeam === 'Team B'){
+          setTeamsToDisplay(filterTeams)
+          countB++
+        }
   }
 
   let [selectedTeam, setTeam] = useState("");
@@ -70,8 +88,6 @@ export const CardDefault = (props) => {
               <img className="abilitie" src={agentToDisplay.abilitie3Icon} alt={agentToDisplay.abilitie3} />
               <img className="abilitie" src={agentToDisplay.abilitie4Icon} alt={agentToDisplay.abilitie4} />
             </div>
-            <br />
-            <p>/Selected by : {agentToDisplay.team}</p>
           </div>
         </div>
         ))}

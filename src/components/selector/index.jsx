@@ -6,12 +6,15 @@ import agentDefault from "../agents/hooks";
 import "./styles.css";
 
 const TeamSelector = (props) => {
+
+  //get the agents on differents teams
   let dataTeamA = props.props.Team_A;
   let dataTeamB = props.props.Team_B;
 
   let [team_A, setTeamA] = useState([]);
   let [team_B, setTeamB] = useState([]);
 
+  
   useEffect(() => {
     function getTeams() {
       setTeamA(dataTeamA);
@@ -34,16 +37,17 @@ const TeamSelector = (props) => {
   }
 
   let teamAToDisplay = destructuringTeams(team_A);
-  console.log(teamAToDisplay);
-
   let teamBToDisplay = destructuringTeams(team_B);
-  console.log(teamBToDisplay);
+
+
+
+
 
   return (
     <div className="cointainerSelector">
       <div className="draft-Row">
         <div className="flex-draftBar">
-          <div className="Teams">
+          <div className="TeamA">
             {typeof teamAToDisplay !== "undefined" ? (
               teamAToDisplay.map((agent) => (
                 <div key={agent.name} className="flex-item-green"> <img className="logoIm" src={agent.logo} alt="logo" /> </div>
@@ -53,7 +57,7 @@ const TeamSelector = (props) => {
             )}
           </div>
           <div className="separatorTeams" />
-          <div className="Teams">
+          <div className="TeamB">
             {typeof teamBToDisplay !== "undefined" ? (
               teamBToDisplay.map((agent) => (
                 <div key={agent.name} className="flex-item-red"> <img className="logoIm" src={agent.logo} alt="logo" /> </div>

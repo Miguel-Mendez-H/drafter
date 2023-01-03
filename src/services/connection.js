@@ -26,7 +26,8 @@ const getAgents = async () => {
             infoAgent.abilitie2Icon = agent.abilities[1].displayIcon
             infoAgent.abilitie3Icon = agent.abilities[2].displayIcon
             infoAgent.abilitie4Icon = agent.abilities[3].displayIcon
-            infoAgent.team = ""
+            infoAgent.teamA = ""
+            infoAgent.teamB = ""
             
             return infoAgent
         })
